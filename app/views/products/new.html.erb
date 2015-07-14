@@ -1,0 +1,15 @@
+<div class="center">
+	<h1>发布图书</h1>
+	<%= form_for(@product) do |f| %>
+			<p>书名</p>
+			<%= f.text_field :title %>
+			<p>描述</p>
+			<%= f.text_field :description %>
+			<p>价格</p>
+			<%= f.text_field :price %>
+			</br>
+			</br>
+			<p> <%= f.submit "发布图书", class: "btn btn-large btn-primary" %> </p>
+			<%= render 'shared/error_messages', object: f.object %>
+	<% end %>
+</div>
