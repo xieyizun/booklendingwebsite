@@ -13,7 +13,7 @@ class ProductsController < ApplicationController
   end
 
   def index
-    @toptens = Comment.find_by_sql("select product_id from comments where score == 5.0")
+    @toptens = Comment.find_by_sql("select product_id from comments where score == 111.0")
     if !@toptens.nil?
         @goodsongs = []
         @toptens.each do |topten|
