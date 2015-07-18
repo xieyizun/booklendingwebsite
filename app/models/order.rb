@@ -9,4 +9,5 @@ class Order < ActiveRecord::Base
 		def create_remember_token2
 			self.remember_token2 = SecureRandom.urlsafe_base64
 		end
+
 end

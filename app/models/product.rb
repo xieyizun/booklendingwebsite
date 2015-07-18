@@ -3,7 +3,6 @@ class Product < ActiveRecord::Base
 	belongs_to :buyer
 	has_many :items, dependent: :destroy
 	has_many :comments, dependent: :destroy
-	
 	#设置完之后记得执行: rake sunspot:solr:reindex
 	searchable do
 		text :title, :description

@@ -15,7 +15,6 @@ class Buyer < ActiveRecord::Base
 	has_many :products, dependent: :destroy
 	has_many :orders, dependent: :destroy
 	has_many :comments, dependent: :destroy
-	
 	private 
 		def create_remember_token
 			self.remember_token = SecureRandom.urlsafe_base64

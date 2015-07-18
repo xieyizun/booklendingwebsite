@@ -6,5 +6,6 @@ class UserMailer < ActionMailer::Base
   	@url = 'http://example.com/login'
   	mail(to: @user.email, subject: 'Welcome to Book Lending Site')
   end
+
 end
 
