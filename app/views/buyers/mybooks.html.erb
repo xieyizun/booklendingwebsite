@@ -1,8 +1,7 @@
 <div>
 	<h1>我发布的图书</h1>
-	<% @mybooks.each do |book| %>
-		<p> <%= book.title %> </p>
-		<p> <%= book.description %> </p>
-		<p> <%= book.price %> </p>
-	<% end %>
+  	<div id="home">
+  		<%= render @mybooks %>
+  		<div> <%= will_paginate @mybooks%> </div>
+  	</div>
 </div>

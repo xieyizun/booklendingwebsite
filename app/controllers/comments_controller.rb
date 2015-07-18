@@ -38,6 +38,7 @@ class CommentsController < ApplicationController
         else
            @comment = Comment.new(params[:comment])
            if @comment.save
+              Product.update(@comment.product_id, :flag => 'y')
               flash[:success] = "Comment successfully!" 
               @item.update(commentable: false)
               redirect_to @product

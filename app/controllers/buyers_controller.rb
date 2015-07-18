@@ -48,6 +48,9 @@ class BuyersController < ApplicationController
     @mybooks = current_buyer.products.paginate(page: params[:page])
   end
   
+  def managemybooks
+    @mybooks = current_buyer.products.paginate(page: params[:page])
+  end
   def index
   end
 

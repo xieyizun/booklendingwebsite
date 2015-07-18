@@ -10,12 +10,13 @@ class OrdersController < ApplicationController
       redirect_to current_order
     else
       @unpaid_order = Order.new(buyer_id:current_buyer.id)
-      @unpaid_order.status = "UnAdded"                      
+      @unpaid_order.status = "UnAdded"
+      @unpaid_order.count = 0                      
       if @unpaid_order.save
         create_order @unpaid_order
         redirect_back_or_to current_order
       else
-        flash[:warning] = "Song list creates failure!"
+        flash[:warning] = "书单创建失败!"
         redirect_to current_buyer
       end
     end
@@ -41,6 +42,9 @@ class OrdersController < ApplicationController
 
   def destroy
     @order = current_buyer.orders.find_by_id(params[:id])
+    @order.items.each do |item|
+        Product.update(item.product_id, :flag => 'y')
+    end
     @order.delete
     respond_to do |format|
       format.html {redirect_to current_buyer}

@@ -33,7 +33,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem 'sunspot_rails'
 gem 'sunspot_solr'
-
+gem 'paperclip', '~> 4.2'
 group :development, :test do
 	gem 'sqlite3'	
 end
