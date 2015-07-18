@@ -7,9 +7,16 @@ class ItemsController < ApplicationController
   def create
     if create_order?
       @product = Product.find_by_id(params[:id])
+      if @product.flag == 'n' #中途被人提前借走
+          flash[:warning] = "你来晚了,图书已借出!"
+          redirect_to @product
+      end
       @item = Item.new(product_id:params[:id], order_id:current_order.id, product_name:@product.title, product_price:@product.price, commentable:true)
       if exisited_item(@item.product_id) or @item.save
-        redirect_to @product.music_url
+        Product.update(@product.id, :flag => 'n') #更新flag表示已经借出
+        #current_order.count += 1 #count用来判断是否order里面的全部记录都已经评论完
+        #Order.update(current_order.id, :count => current_order.count)
+        redirect_to current_order
       else
         render new_item_path
       end
@@ -17,7 +24,10 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+      product_id = current_order.items.find_by_id(params[:id]).product_id
+      Product.update(product_id, :flag => 'y')
       current_order.items.find_by_id(params[:id]).destroy
+    
       respond_to do |format|
           format.html {redirect_to current_order}
           format.js

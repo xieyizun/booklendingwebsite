@@ -1,8 +1,6 @@
-<p>Song List Id: <%= @item.order_id %> </p>
-<p>Music Item Id: <%= @item.id %>
-<p>Music name: <%= link_to "#{@product.title}", @product %></p>
-<p>Music Id: <%= @product.id %> </p>
-<p>Listen: <%= button_to "Enjoy this song", @product.music_url, class: "btn btn-primary btn-sm" %> </p>
+<p>书单编号: <%= @item.order_id %> </p>
+<p>书名: <%= link_to "#{@product.title}", @product %></p>
+<p>上传者: <%= @product.buyer.name %> </p>
 </br>
 <% if @item.commentable == true and (current_order.nil? or current_order.id != @item.order_id) %>
  	<%= form_for(@comment) do |f| %>
@@ -29,6 +27,23 @@
 		<%= f.label :score, 1 %>
 		<%= f.radio_button :score, 1 %>
  	</br>
-		<%= f.submit "Comment on this song", class: "btn btn-primary btn-sm" %>
+		<%= f.submit "评分并归还", class: "btn btn-primary btn-sm" %>
    <% end %>
+<% else %>
+	<div class="row">
+  		<table class="table">
+	  		<caption >评论</caption>
+	  		<thread>
+				<tr>
+					<th>评论编号</th>
+					<th>用户名</th>
+					<th>分数</th>
+				</tr>
+	  		</thread>
+	  		<tbody id="show_comments">
+		   		<%= render @product.comments %>
+	  		</tbody> 
+  		</table> 
+	</div>
+
 <% end %>

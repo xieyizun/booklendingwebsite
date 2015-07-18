@@ -1,0 +1,19 @@
+<h1>管理我的图书</h1>
+<div>
+  	<% @mybooks.each do |product| %>
+  	<div class="col-sm-6 col-md-3", id="myproduct">
+  		<div class="thumbnail", style="border-color:white">
+  			<div  style="width:170px; height:200px; overflow:hidden">
+			<%= link_to image_tag(product.avatar.url, alt: 'book'),product_path(product.id) %>
+			</div>
+			<p> 书名: <%= link_to product.title, product_path(product.id) %> </p>
+			<p> 描述: <%= product.description %> </p>
+			<p> 上传者: <%= product.buyer.name %> </p>
+  			<%= link_to "修改", edit_product_path(product), class: "btn btn-large btn-primary" %>
+			<%= link_to "删除", product, class: "btn btn-default btn-sm",
+				method: :delete, data: {confirm: "确定?"}, remote: true %> 
+  			<div> <%= will_paginate @mybooks%> </div>
+  		</div>
+  	</div>
+  	<% end %>
+</div>

@@ -1,41 +1,43 @@
-<div id="product">
-   <div class="col-sm-6 col-md-3" id="product_detail">
- 
-	<div class="thumbnail">
-		<%= image_tag(@product.image_url, alt: 'product') %>
+<div id="product_detail">
+	<div class="thumbnail", style="border-color:white">
+			<div  style="width:170px; height:200px; overflow:hidden">
+				<%= link_to image_tag(@product.avatar.url, alt: 'book'),product_path(@product.id) %>
+			</div>
+			<p> 书名: <%= link_to @product.title, product_path(@product.id) %> </p>
+			<p> 描述: <%= @product.description %> </p>
+			<p> 上传者: <%= @product.buyer.name %> </p>
 	</div>
-	<div class="caption">
-		<p> ID: <%= @product.id %> </p>
-		<p> Name: <%= @product.title %> </p>
-		<p> Singer: <%= @product.description %> </p>
-		<p>
+</div>
+<div>
 		<% if sign_in? %>
-		    <% if create_order? or is_commented_song @product.id %>
-				<p> <%= button_to "Enjoy this song", items_path,class: "btn btn-primary btn-sm" %> </p>
+			<% if @product.flag == 'y' %>
+		    	<% if create_order? %>
+					<p> <%= button_to "借阅", items_path,class: "btn btn-primary btn-sm" %> </p>
+				<% else %>
+					<p> Listen: <%= button_to "创建借阅订单", orders_path, class: "btn btn-primary btn-sm" %> </p>
+				<% end %>
 			<% else %>
-				<p> Listen: <%= button_to "Create a song list first", orders_path, class: "btn btn-primary btn-sm" %> </p>
+				<p>图书已借出,暂时无法借阅.</p>
 			<% end %>
 		<% else %>
-			<p> Listen: <%= link_to "Sign in first", signin_path, class: "btn btn-primary btn-sm"%> </p>
+			<p> Listen: <%= link_to "登陆", signin_path, class: "btn btn-primary btn-sm"%> </p>
 		<% end %>
 	    </p>
-	</div>
-   </div>
 </div>
+
 <div class="row">
   <table class="table">
-	  <caption >Comments</caption>
+	  <caption >评论</caption>
 	  <thread>
 		<tr>
-			<th>Comment ID</th>
-			<th>User ID</th>
-			<th>Score</th>
+			<th>评论编号</th>
+			<th>用户名</th>
+			<th>分数</th>
+		</tr>
 	  </thread>
 	  <tbody id="show_comments">
 		   <%= render @comments %>
-
-	  </tbody>
-	 
+	  </tbody> 
   </table> 
 </div>
 <div class="row"> <%= will_paginate @comments%></div>

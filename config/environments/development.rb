@@ -45,4 +45,6 @@ Rails.application.configure do
     :enable_starttls_auto => true
   }
 
+  #Paperclip.option[:command_path] = "/usr/bin"
+
 end

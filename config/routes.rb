@@ -12,6 +12,9 @@ Rails.application.routes.draw do
     collection do
       get 'mybooks'
     end
+    collection do
+      get 'managemybooks'
+    end
   end
 
   resources :buyers, :products, :orders
@@ -26,6 +29,7 @@ Rails.application.routes.draw do
   match 'signout', to: 'sessions#destroy', via: :delete
   match '/goodsongs', to: 'products#index', via: :get
   match '/mybooks', to: 'buyers#mybooks', via: :get
+  match '/managemybooks', to: 'buyers#managemybooks', via: :get
   #match '/search', to: 'products#search', via: :get
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

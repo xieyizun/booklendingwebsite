@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150714154526) do
+ActiveRecord::Schema.define(version: 20150718082739) do
 
   create_table "buyers", force: true do |t|
     t.string   "name"
@@ -65,21 +65,38 @@ ActiveRecord::Schema.define(version: 20150714154526) do
     t.datetime "updated_at"
     t.decimal  "total_cost"
     t.string   "status"
+    t.integer  "count"
   end
 
   add_index "orders", ["status"], name: "index_orders_on_status"
+
+  create_table "pictures", force: true do |t|
+    t.string   "name"
+    t.string   "content_type"
+    t.string   "size"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "products", force: true do |t|
     t.string   "title"
     t.text     "description"
     t.string   "image_url"
-    t.decimal  "price",       precision: 8, scale: 2
+    t.decimal  "price",                precision: 8, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "music_url"
     t.string   "type"
     t.string   "flag"
     t.integer  "buyer_id"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.integer  "count"
   end
 
   add_index "products", ["buyer_id"], name: "index_products_on_buyer_id"
