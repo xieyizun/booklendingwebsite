@@ -30,6 +30,9 @@ Rails.application.routes.draw do
   match '/goodsongs', to: 'products#index', via: :get
   match '/mybooks', to: 'buyers#mybooks', via: :get
   match '/managemybooks', to: 'buyers#managemybooks', via: :get
+  #将所有非法路由请求定位到404页面
+  match '*path', to: 'static_pages#error404', via: :all
+  
   #match '/search', to: 'products#search', via: :get
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

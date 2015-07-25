@@ -1,4 +1,5 @@
 module OrdersHelper
+
 	def create_order(order)
 		cookies.permanent[:remember_token2] = order.remember_token2
 		self.current_order = order

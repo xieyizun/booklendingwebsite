@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
 
   def new
   end
-
+  #处理提交的对书籍的评分请求
   def create
     current_buyer.orders.each do |order|
         @item = order.items.find_by_id(params[:comment][:item_id])
@@ -33,21 +33,21 @@ class CommentsController < ApplicationController
     if !@item.nil?
         @product = Product.find_by_id(params[:comment][:product_id])
         if @item.commentable == false
-            flash[:warning] = "You have already comment on this item!"
+            flash[:warning] = "你已经评论过无法重新评论!"
             redirect_to @product
         else
            @comment = Comment.new(params[:comment])
            if @comment.save
               Product.update(@comment.product_id, :flag => 'y')
-              flash[:success] = "Comment successfully!" 
+              flash[:success] = "评论成功!" 
               @item.update(commentable: false)
               redirect_to @product
            else
-              flash[:warning] = "Comment faliure, please try again!"
+              flash[:warning] = "评论失败,请重试一遍!"
            end
         end
     else
-        flash[:warning] = "The item is not existed or doesn't belong to you!"
+        flash[:warning] = "你无法评论别人借的书籍!"
     end
   end
 

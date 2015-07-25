@@ -1,4 +1,9 @@
 <p>书单编号: <%= @item.order_id %> </p>
+<div class="thumbnail">
+	<div style="width:170px; height:200px; overflow:hidden">
+		<%= link_to image_tag(@item.product.avatar), @item.product %>
+	</div>
+</div>
 <p>书名: <%= link_to "#{@product.title}", @product %></p>
 <p>上传者: <%= @product.buyer.name %> </p>
 </br>

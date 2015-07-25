@@ -1,8 +1,7 @@
 == README
+该项目为图书共享平台,功能包括图书发布,图书搜索,图书借阅,图书归还并评分
 
-阅读一直是当代社会文明的重要驱动，而大学生作为社会发展的重要人力资源，阅读当然必不可少。大学生阅读书籍的主要来源是图书馆和购买书籍，缺少社交元素。而bookshare图书借阅平台致力于提供一个共享的图书资源，整合校内资源，让学生能够共享自己闲置的好书，与书友交流，提升个人修养，促进大学生积极向上的社交。
-
-网站运行：首先需要有ruby解析器和搭建rails环境，然后进入项目目录下，输入：rails s或者rails server(后面可以指定监听端口）
+首先需要有ruby解析器和搭建rails环境，然后进入项目目录下，输入：rails s或者rails server(后面可以指定监听端口）
 项目代码目录：app存放项目源代码
 		--assets程序的相关资源
 		--controllers  MVC架构的控制器
@@ -39,4 +38,3 @@ Things you may want to cover:
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
->>>>>>> origin/master

@@ -1,7 +1,9 @@
-source 'https://rubygems.org'
+#source 'https://rubygems.org'
+source 'https://ruby.taobao.org'
 #http://ruby.taobao.org/mirrors/ruby/ 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'
+#gem 'rails', '4.2.3'
 gem 'bootstrap-sass'
 gem 'bcrypt-ruby', '3.1.2', :require => 'bcrypt'
 gem 'will_paginate'
@@ -31,9 +33,9 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
-gem 'sunspot_rails'
-gem 'sunspot_solr'
 gem 'paperclip', '~> 4.2'
+
+
 group :development, :test do
 	gem 'sqlite3'	
 end

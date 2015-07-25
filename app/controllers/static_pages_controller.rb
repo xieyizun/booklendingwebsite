@@ -1,29 +1,14 @@
 class StaticPagesController < ApplicationController
+	#home方法主要处理网站的主页请求
 	def home
+		#分页显示主目录的书籍,每页16本书
 		@products = Product.paginate(page: params[:page], :per_page => 16)
 
 		session.delete(:return_to)
 		@product = Product.new
-
 	end
-
-  private 
-    #when a user sign in, create a pool of recommended songs that he may like,
-	#which are deal with by the offline method.
-	def fill_in_recommend_songs
-		songs_pool = []
-		count = 0
-		users_songs = IO.readlines("/home/xieyizun/ai/music/app/assets/recommend/offline") 
-		users_songs.each do |line|
-			user_song = line.split(' ')
-			if user_song.first.to_i == current_buyer.id and count <= 100
-				songs_pool << user_song.last.to_i
-				count += 1
-				if count > 100
-				   break
-				end		
-			end
-		end
-		return songs_pool
-	end	
+	#处理所有非法路由,定位到404页面
+	def error404
+		render file: "#{Rails.root}/public/404.html", status: 404, layout: false
+	end
 end

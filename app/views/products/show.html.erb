@@ -1,11 +1,12 @@
 <div id="product_detail">
 	<div class="thumbnail", style="border-color:white">
 			<div  style="width:170px; height:200px; overflow:hidden">
-				<%= link_to image_tag(@product.avatar.url, alt: 'book'),product_path(@product.id) %>
+				<%= link_to image_tag(@product.avatar.url, alt: 'book') %>
 			</div>
-			<p> 书名: <%= link_to @product.title, product_path(@product.id) %> </p>
+			<p> 书名: <%= @product.title %> </p>
 			<p> 描述: <%= @product.description %> </p>
 			<p> 上传者: <%= @product.buyer.name %> </p>
+			<p> 联系方式: <%= @product.buyer.email %> </p>
 	</div>
 </div>
 <div>
@@ -14,13 +15,13 @@
 		    	<% if create_order? %>
 					<p> <%= button_to "借阅", items_path,class: "btn btn-primary btn-sm" %> </p>
 				<% else %>
-					<p> Listen: <%= button_to "创建借阅订单", orders_path, class: "btn btn-primary btn-sm" %> </p>
+					<p> <%= button_to "创建借阅订单", orders_path, class: "btn btn-primary btn-sm" %> </p>
 				<% end %>
 			<% else %>
 				<p>图书已借出,暂时无法借阅.</p>
 			<% end %>
 		<% else %>
-			<p> Listen: <%= link_to "登陆", signin_path, class: "btn btn-primary btn-sm"%> </p>
+			<p><%= link_to "登陆", signin_path, class: "btn btn-primary btn-sm"%> </p>
 		<% end %>
 	    </p>
 </div>

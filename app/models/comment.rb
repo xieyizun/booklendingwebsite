@@ -2,6 +2,7 @@ require 'csv'
 
 class Comment < ActiveRecord::Base
 	attr_accessible :score, :buyer_id, :product_id, :item_id
+	#评分属于书,用户,书单项
 	belongs_to :product
 	belongs_to :buyer
 	belongs_to :item
@@ -19,5 +20,4 @@ class Comment < ActiveRecord::Base
              end
           end
     end
-
 end
